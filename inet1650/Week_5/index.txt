@@ -4,7 +4,6 @@
         <meta charset="utf-8">
             <title>my site</title>
                 </head>
- 
     <body>
            <h1>Welcome to Sheridan</h1> <br>
                <img src="images/sheridan-900w.jpg" alt="Historic main St."> 
