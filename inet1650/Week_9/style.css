@@ -1,0 +1,48 @@
+.ex1 p{background-color: #c2f670;
+        width: 208px;
+        hight:208px;
+        border: double 4px black;}
+        
+.ex2 p{background-color: #c2f670;
+        width: 200px;
+        hight:200px;
+        overflow:hiddin;}
+        
+.ex3 p{background-color: #c2f670;
+        width: 264px;
+        hight:264px;
+        padding: 2em;}
+        
+.ex4 p{background-color: #c2f670;
+        width: 280px;
+        hight:280px;
+        padding: 2em;
+        border: solid red 4px;}
+        
+.ex5 { background-color: #c2f670;
+        width: 280px;
+        hight:280px;
+        padding: 2em;
+        border: solid red 4px;
+        margin: 2em;
+        }
+    
+.ex6 { background-color: #c2f670;
+        width: 494px;
+        hight:280px;
+        padding: 1em 1em 1em 6em;
+        border: dashed black 4px;
+        margin: 1em 6em 1em 6em}
+        
+.ex7 {background-color: #c2f670;
+        width: 494px;
+        hight:280px;
+        padding: 1em 50px 1em 50px;
+        border: solid blue 2px;
+        margin: 1em 6em 1em 6em;
+        overflow: scroll; }
+        
+        
+        
+        
+        
