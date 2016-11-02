@@ -1,0 +1,77 @@
+
+
+header{
+    overflow: hidden;
+    text-align: center;
+}
+        header nav h1{
+           font-size: 5em;
+           text-align: center;
+       }
+
+nav ul{
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    width: 19.5em;
+}
+            nav ul li{
+                float: left;
+            }
+
+                    nav ul li a{
+                        display: block;
+                        width: 70px;
+                        text-align: center;
+                        text-decoration: none;
+                        padding: 5px 5px;
+                        margin: .25em;
+                        color: black;
+                        background-color: white;
+                        border-radius: 5px;
+                    }
+body{
+ background: url(pic/star-space-tile.jpg) repeat;
+ color: white;
+ }
+        .body{
+            overflow: auto;
+        }
+
+.droid {
+    box-shadow: 0px 0px 10px white;
+    background-color: #2D2D2D;
+    margin: 50px auto;
+    height: auto;
+    width: 1200px;
+    overflow: auto;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.photo img{
+    float: left;
+}
+        div.droid:nth-child(2) .photo img{
+           float: right;
+       }
+       
+div.desc{
+    margin: 5px 5px 5px 5px;    
+}
+
+.thumbs ul{ 
+    list-style-type: none;
+    margin: 0 auto;
+}
+        .thumbs ul li{
+        float: left;
+        margin: 5px 5px 5px 5px;
+        }
+                .thumbs ul li img {
+                    display: block;
+                    margin: auto;
+                }
+                        .thumbs ul:nth-child(2){
+                            float:left;
+                            margin: auto;
+                        }
