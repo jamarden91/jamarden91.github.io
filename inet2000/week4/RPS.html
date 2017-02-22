@@ -36,21 +36,22 @@
 				function win(){
 					results += "<strong> YOU WIN </strong>";
 				}
-
-				if ( (ComputerChoice == 'rock') && (userChoice == 'scissors')){
-					Louse();
-				}
-				else if ((computerChoice == 'paper') && (userChoice == 'rock')){
-					Louse();
-				}
-				else if ((computerChoice == 'scissors') && (userChoice == 'paper')){
-					Louse();
-				}
-				else if ( computerChoice == userChoice ){
+				
+				
+				if ( computerChoice == userChoice ){
 					results += "<strong> draw </strong>";
 				}
+				else if ( ComputerChoice == 'rock' && userChoice == 'scissors'){
+					results += "<strong> YOU LOUSE </strong>";
+				}
+				else if (computerChoice == 'paper' && userChoice == 'rock'){
+					results += "<strong> YOU LOUSE </strong>";
+				}
+				else if (computerChoice == 'scissors' && userChoice == 'paper'){
+					results += "<strong> YOU LOUSE </strong>";
+				}
 				else {
-					win(); 
+					results += "<strong> YOU WIN </strong>";
 				}
 			
 				document.getElementById('gameOutput').innerHTML = results;
