@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf8">
+	<title>Blackjack</title>
+	<style type="text/css">
+		#cards img, #shuffled img { height: 50px; float: left; margin: 5px; }
+	</style>
+	     
+	<script src="http://code.jquery.com/jquery-3.1.1.slim.js"></script>
+	
+	<script>
+		
+		function getNewDeck() {
+			var deck = [];
+			var suits = ['clubs','spades','diamonds','hearts'];
+			/**
+			* build an array of card objects. A single card object should look like the following:
+			*	{suit: 'clubs', face: 'jack', value: 11}
+			*	or
+			*	{suit: 'hearts', face: 2, value: 2}
+			**/
+			for(var i = 0; i < 4; i++ ){
+				for(var y = 1; y < 14; y++){
+					if(y == 1){
+						deck.push({suit: suits[i], face: 'ace' , value: y});
+					}
+					else if(y == 11 ){
+						deck.push({suit: suits[i], face: 'jack' , value: y});
+					}
+					else if(y == 12 ){
+						deck.push({suit: suits[i], face: 'queen' , value: y});
+					}
+					else if(y == 13 ){
+						deck.push({suit: suits[i], face: 'king' , value: y});
+					}
+					else{
+						deck.push({suit: suits[i], face: y , value: y});	
+					}
+				}
+			}
+			return deck;
+		}
+		function printDeck(deck) {
+			var cards = '';
+			for( var i = 0; i < 52; i++){
+				cards = cards + '<img src="cards/' + deck[i].face + '_of_' + deck[i].suit + '.png" /> ';
+				if( deck[i].face == 'king' ){
+					/** didnt know how elese to go about it just the one <br> wasnt working **/
+					cards = cards + '<br><br><br>'; 
+				}
+				else{
+					cards = cards + ''; 
+				}
+			}
+			/**
+			* Create a string that represents all the cards in the deck.
+			* This will be a string of "<img ...><img ...>" tags that represent the cards in the deck
+			**/
+			return cards;
+		}
+		
+		function shuffleDeck(deck) {
+			var newDeck = [];
+			var i = 51;  
+			for (var y = 0; y < 52; y++ ){
+				var slot = Math.floor(Math.random() * deck.length);
+				newDeck.push(deck[slot]);
+				deck.splice(slot, 1);
+			}
+			/**
+			* Write the code to shuffle the deck.
+			* You'll use push and splice methods here
+			**/
+			return newDeck;
+		}
+		
+		function printDeck(deck) {
+			var cards = '';
+			for( var i = 0; i < 52; i++){
+				cards = cards + '<img src="cards/' + deck[i].face + '_of_' + deck[i].suit + '.png" /> ';
+				if( (i+1)%13 == 0 ){
+					/** didnt know how elese to go about it just the one <br> wasnt working **/
+					cards = cards + '<br clear="all">'; 
+				}
+				else{
+					cards = cards + ''; 
+				}
+			}
+			/**
+			* Create a string that represents all the cards in the deck.
+			* This will be a string of "<img ...><img ...>" tags that represent the cards in the deck
+			**/
+			return cards;
+		}
+		
+		function game() {
+			var deck = getNewDeck();
+			console.log(deck); 
+			$('#cards').html(printDeck(deck));
+			var deck = shuffleDeck(deck);
+			$('#shuffled').html(printDeck(deck));
+		}
+		
+		
+	</script>
+</head>
+<body>
+	<h1>Blackjack</h1>
+	<div><button onclick="game();">Show Deck</button></div>
+	<h2>New Deck</h2>
+	<div id="cards">
+	</div>
+	<h2>Sorted Deck</h2>
+	<div id="shuffled">
+	</div>
+
+</body>
+</html>
