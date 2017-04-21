@@ -4,14 +4,25 @@
 	<meta charset="utf8">
 	<title>Blackjack</title>
 	<style type="text/css">
+		body {background: url('table.png') #dadada no-repeat center top; }
 		#cards img, #shuffled img { height: 50px; float: left; margin: 5px; }
+		#dealer { width: 400px; height: 220px; margin: auto; text-align: center; }
+		#dealer img { width: 70px; }
+		#deck p { color: #fff; font-size: 50px; font-weight: bold; margin: 0; padding: 0; }
+		#deck img { width: 70px; }
+		#player { width: 400px; height: 140px; margin: auto; margin-top: 105px; text-align: center; }
+		#player-cards { height: 105px; }
+		#player img { width: 70px; }
 	</style>
 	     
-	<script src="http://code.jquery.com/jquery-3.1.1.slim.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.js"></script>
 	
 	<script>
+	
+		var deck, dealerCards, playerCards;
 		
 		function getNewDeck() {
+			// code from last week
 			var deck = [];
 			var suits = ['clubs','spades','diamonds','hearts'];
 			/**
@@ -41,79 +52,114 @@
 			}
 			return deck;
 		}
-		function printDeck(deck) {
-			var cards = '';
-			for( var i = 0; i < 52; i++){
-				cards = cards + '<img src="cards/' + deck[i].face + '_of_' + deck[i].suit + '.png" /> ';
-				if( deck[i].face == 'king' ){
-					/** didnt know how elese to go about it just the one <br> wasnt working **/
-					cards = cards + '<br><br><br>'; 
-				}
-				else{
-					cards = cards + ''; 
-				}
-			}
-			/**
-			* Create a string that represents all the cards in the deck.
-			* This will be a string of "<img ...><img ...>" tags that represent the cards in the deck
-			**/
-			return cards;
-		}
 		
 		function shuffleDeck(deck) {
-			var newDeck = [];
-			var i = 51;  
+			// code from last week
+			var newDeck = []; 
 			for (var y = 0; y < 52; y++ ){
 				var slot = Math.floor(Math.random() * deck.length);
 				newDeck.push(deck[slot]);
 				deck.splice(slot, 1);
 			}
-			/**
-			* Write the code to shuffle the deck.
-			* You'll use push and splice methods here
-			**/
-			return newDeck;
+			
+		function printCards(theCards,location) {
+			var cards = '';
+			for(var i = 0; i < theCards.lenght, i++){
+				cards =+ '<img src="cards/' + theCards[i].face + '_of_' + theCards[i].suit + '.png" /> ';
+			}
+			// add code here that builds a string of images that represent the cards
+			
+			$('#' + location).html(cards);
 		}
 		
-		function printDeck(deck) {
-			var cards = '';
-			for( var i = 0; i < 52; i++){
-				cards = cards + '<img src="cards/' + deck[i].face + '_of_' + deck[i].suit + '.png" /> ';
-				if( (i+1)%13 == 0 ){
-					/** didnt know how elese to go about it just the one <br> wasnt working **/
-					cards = cards + '<br clear="all">'; 
+		function getCard() {
+			return deck.pop();
+		}
+		
+		function displayWinner(winner) {
+			$('#deck').html('<p>' + winner + '</p>');
+		}
+		function countCards(theHand) {
+			var total = 0;
+			for( var i = 0, i < theHand.length, i++){
+				total += theHand[i].value;
+			}
+			return total; 
+			// find the point total of the hand.
+			// aces are counted as 11 for this week.
+		}
+		
+		function stand() {
+			for(){
+				if( countCards(dealerCards) < 17 ){
+					dealerCares.push(getCard());
+				}
+				else if ( countCards(dealerCards) >= 17 &&
+						 countCards(dealerCards) <= 21;){
+					displayWinner(dealerCards);
 				}
 				else{
-					cards = cards + ''; 
+					displayWinner(playerCards);
 				}
 			}
-			/**
-			* Create a string that represents all the cards in the deck.
-			* This will be a string of "<img ...><img ...>" tags that represent the cards in the deck
-			**/
-			return cards;
+			// if the player stands, then the dealer takes cards as long as the dealer's hand is < 17.
+			// Once hand is greater than 17, then game is over.  If the dealer is >= 17 and <= 21, then dealer wins.
+			// If dealer is > 21, then player wins.
+		}
+		
+		function hit() {
+			playerCards.push(getCard());
+			if(countCards(playerCards) > 21 ){
+				displayWinner(dealerCards);
+			}
+			else if(countCards(playerCards) < 21 &&
+					countCards(playerCards) < countCards(dealerCards){
+				displayWinner(dealerCards); 
+			}
+			else{
+				displayWinner(playerCards); 
+			}
+			printCards(playerCards,'player-cards');
+			// Add another card to the players hand.  If the card causes player
+			// to bust, then end game.  Player busts when total of cards is greater than 21.
+			// be sure to handle the "ACE"  the ace could be either 1 or 11
 		}
 		
 		function game() {
-			var deck = getNewDeck();
-			console.log(deck); 
-			$('#cards').html(printDeck(deck));
-			var deck = shuffleDeck(deck);
-			$('#shuffled').html(printDeck(deck));
+			// init each player
+			dealerCards = [];
+			playerCards = [];
+			
+			// init deck
+			deck = shuffleDeck(getNewDeck());
+			
+			// show deck 
+			$('#deck').html('<img src="back.png" />');
+			
+			// clear any cards that dealer may have showing from last hand
+			printCards(dealerCards,'dealer-cards');
+
+			// deal first two cards to player
+			playerCards.push(getCard());
+			playerCards.push(getCard());
+			
+			// print hand
+			printCards(playerCards,'player-cards');
 		}
-		
-		
 	</script>
 </head>
 <body>
-	<h1>Blackjack</h1>
-	<div><button onclick="game();">Show Deck</button></div>
-	<h2>New Deck</h2>
-	<div id="cards">
+	<div id="dealer">
+		<div id="deck"></div>
+		<div id="dealer-cards"></div>
 	</div>
-	<h2>Sorted Deck</h2>
-	<div id="shuffled">
+	<div id="player">
+		<div id="player-cards"></div>
+		<div id="buttons">
+			<button onclick="hit();">Hit</button>
+			<button onclick="stand();">Stand</button>
+			<button onclick="game();">New Game</button>
+		</div>
 	</div>
-
 </body>
 </html>
