@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Canvas</title>
+	<script>
+    
+	</script>
+    <style>
+        #myCanvas { border: 1px solid #00f; }
+    </style>
+</head>
+<body>
+    
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+	
+    
+    <script>
+	var c;
+	var ctx;
+
+	var squares = [];
+
+	function getColor() {
+		var redColor = Math.floor(Math.random() * 256);
+		var blueColor = Math.floor(Math.random() * 256);
+		var greenColor = Math.floor(Math.random() * 256);
+
+		return (redColor.toString(16) + blueColor.toString(16) + greenColor(16));
+	}
+	
+	var newcolor = getColor(); 
+
+	function draw(i) {
+		for(x=0; x < squares.length; ){
+		ctx.fillStyle= "#" + newcolor + "" ;
+		ctx.fillRect( 0, 0 , x, x );
+		ctx.stroke();
+		squares [x].size +=1; 
+		}
+		
+		
+		if(squares.size[] % 20 === 0; ){
+			squares.push(size:0, color: newcolor);
+		}
+
+	}
+
+	
+	function render(i) {
+		setTimeout(function() {
+			draw(i);
+		}, (i * 20));
+	}
+
+	function main() {
+		c = document.getElementById("myCanvas");
+		ctx = c.getContext("2d");
+		//ctx.translate(150, 150);
+
+		for (i = 0; i < 501; i++) {
+			render(i);
+		}
+	}
+	main(); 
+
+	/*
+ctx.save();
+		ctx.rotate(i * Math.PI / 180);
+		if (i % 5 == 0) {
+			ctx.beginPath();
+			ctx.moveTo(-50, -50);
+			ctx.strokeStyle = "#0000ff";
+			ctx.lineTo(50, -50);
+			ctx.stroke();
+		}
+		if (i % 6 == 0) {
+			ctx.beginPath();
+			ctx.strokeStyle = "#FF0000";
+			ctx.rect(60, -60, 10, 10);
+			ctx.stroke();
+			if (i % 12 == 0) {
+				ctx.beginPath();
+				ctx.fillStyle = "#00ff00";
+				ctx.strokeStyle = "#000000";
+				ctx.arc(80, -80, 5, 0, 2 * Math.PI);
+				ctx.stroke();
+				ctx.fill();
+			}
+		}
+		ctx.restore();
+		*/
+	</script>
+</body>
+</html>
+
+
+
