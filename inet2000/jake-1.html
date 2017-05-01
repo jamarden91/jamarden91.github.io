@@ -26,24 +26,25 @@
 		var blueColor = Math.floor(Math.random() * 256);
 		var greenColor = Math.floor(Math.random() * 256);
 
-		return (redColor.toString(16) + blueColor.toString(16) + greenColor(16));
+		return (redColor.toString(16) + blueColor.toString(16) + greenColor.toString(16));
 	}
 	
+	var newcolor = getColor(); 
+
 	function draw(i) {
-		
-		if(i % 20 == 0; ){
-			var newcolor = getColor(); 
-			squares.push({size:0, color: newcolor});
+
+		if (i % 20 == 0) {
+			var newColor = getColor();
+			squares.push({size:0, color: newColor});
 		}
-		
+
 		for(x=0; x < squares.length; x++ ){
-		
-		ctx.fillStyle= "#" + squares[x].color + "" ;
+			ctx.fillStyle= "#" + squares[x].color + "" ;
 			ctx.fillRect( 0, 0 , squares[x].size, squares[x].size );
 			ctx.stroke();
 			squares[x].size +=1; 
 		}
-
+		
 	}
 
 	
