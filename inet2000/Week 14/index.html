@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf8">
+	<title>Sheridan Campus Room Locator</title>
+	<style type="text/css">
+		#map-container, #search-container { text-align: center; position: relative; }
+		#map { height: 100%; }
+		#pin-container { position: absolute; display: none; }
+		#caption { background: yellow; padding: 10px; color: #000; border-radius: 4px; position: absolute; }
+	</style>
+	<script type="text/javascript">
+		var rooms = []; // list of rooms that can be located
+		rooms[0] = {roomNum:105, top:914, left:914};
+		rooms[1] = {roomNum:120, top:300, left: 300};
+		rooms[2] = {roomNum: 110, top:120, left:914};
+		rooms[3] = {roomNum:123, top: 140, left:222}; 
+		// locate room
+		function lookup(room) {
+			// the following gets the top left corner location of the object specified.
+			var position = $('#map').offset(); // example: position = { left: 20, top: 45 }
+			console.log(position);
+			var roomIndex = -1; 
+			for( var i = 0; i < rooms.length; i++){
+				if(room == rooms[i].roomNum){
+				  roomIndex = i;
+				  break; 
+				}
+			}
+			if (roomIndex == -1){
+				alert('cant be found');
+				return; 
+			}
+			//Find room number
+			//edit below to
+			var l = document.getElementById("map").height;
+			var left = (l *rooms[roomIndex].left) /914;
+			
+			var w = document.getElementById("map").width;
+			var top = (w * rooms[roomIndex].length) / 922; 
+			
+			var css = 'left: ' + (parseInt(position.left) + left) + 'px; ' + 'top: ' + (parseInt(position.top) + top ) + 'px;';
+		
+			$('#pin-container').attr('style', css);
+			$('#caption').html('Computer Science');
+			$('#pin-container').show();
+			return false;
+		}
+		
+		function adjustMap() {
+			// get height of window in pixel so we can adjust the container
+			// and leave some space at the bottom of the page for the form.
+			var windowHeight = $(window).height() - 100;
+			$('#map-container').height(windowHeight);
+			$('#pin-container').hide();
+		}
+	</script>
+</head>
+<body>
+	<div id="map-container">
+		<div id="pin-container" >
+			<img id="pin" src="pin.png" />
+			<div id="caption"></div>
+		</div>
+		<img id="map" src="map.jpg" />
+	</div>
+	<div id="search-container">
+		<form action="#">
+			<label>Enter room name or number:</label>
+			<input type="text" name="room" id="room">
+			<button onclick="lookup($('#room').val());">Locate</button>
+		</form>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.js"></script>
+
+	<script>	
+		// run when page first loads
+	  	$(document).ready( function(){
+	  		//Run function when browser  resize
+		  	$(window).resize( adjustMap );
+	  		adjustMap();
+	  	});
+	</script>	
+</body>
+</html>
