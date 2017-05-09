@@ -11,10 +11,11 @@
 	</style>
 	<script type="text/javascript">
 		var rooms = []; // list of rooms that can be located
-		rooms[0] = {roomNum:105, top:914, left:914};
-		rooms[1] = {roomNum:120, top:300, left: 300};
-		rooms[2] = {roomNum: 110, top:120, left:914};
-		rooms[3] = {roomNum:123, top: 140, left:222}; 
+		rooms[0] = {roomNum:145, top:550, left:400};
+		rooms[1] = {roomNum:169, top:550, left:430};
+		rooms[2] = {roomNum:121, top:570, left:590};
+		rooms[3] = {roomNum:132, top:580, left:580};
+		rooms[4] = {roomNum:111, top:580, left:590};
 		// locate room
 		function lookup(room) {
 			// the following gets the top left corner location of the object specified.
@@ -35,9 +36,10 @@
 			//edit below to
 			var l = document.getElementById("map").height;
 			var left = (l *rooms[roomIndex].left) /914;
-			
+				left = left - 50; 
 			var w = document.getElementById("map").width;
-			var top = (w * rooms[roomIndex].length) / 922; 
+			var top = (w * rooms[roomIndex].top) / 922;
+				top = top - 50; 
 			
 			var css = 'left: ' + (parseInt(position.left) + left) + 'px; ' + 'top: ' + (parseInt(position.top) + top ) + 'px;';
 		
